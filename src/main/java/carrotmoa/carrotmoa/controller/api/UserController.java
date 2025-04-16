@@ -6,6 +6,7 @@ import carrotmoa.carrotmoa.model.request.UserUpdateRequest;
 import carrotmoa.carrotmoa.model.response.FindUserResponse;
 import carrotmoa.carrotmoa.service.UserService;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/email-check")
-    public ResponseEntity<Boolean> emailCheck(@RequestParam("email") String email) {
+    public ResponseEntity<Boolean> emailCheck(@RequestParam("email") @Valid String email) {
         return new ResponseEntity<Boolean>(userService.emailCheck(email), HttpStatus.OK);
     }
 
     @GetMapping("/auth-code-send")
-    public ResponseEntity<Boolean> authCodeEmailSend(@RequestParam("email") String email) {
+    public ResponseEntity<Boolean> authCodeEmailSend(@RequestParam("email") @Valid String email) {
         boolean result;
         try {
             userService.sendCodeToEmail(email);
@@ -48,12 +49,12 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<Boolean> userJoinSubmit(@RequestBody UserJoinDto userJoinDto) {
+    public ResponseEntity<Boolean> userJoinSubmit(@RequestBody @Valid UserJoinDto userJoinDto) {
         return new ResponseEntity<Boolean>(userService.userJoin(userJoinDto), HttpStatus.OK);
     }
 
     @GetMapping("/nickname-duplication")
-    public ResponseEntity<Boolean> nicknameDuplication(@RequestParam("nickname") String nickname) {
+    public ResponseEntity<Boolean> nicknameDuplication(@RequestParam("nickname") @Valid String nickname) {
         return new ResponseEntity<Boolean>(userService.nicknameCheck(nickname), HttpStatus.OK);
     }
 
