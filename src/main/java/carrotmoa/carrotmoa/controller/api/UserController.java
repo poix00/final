@@ -6,6 +6,7 @@ import carrotmoa.carrotmoa.model.request.UserUpdateRequest;
 import carrotmoa.carrotmoa.model.response.FindUserResponse;
 import carrotmoa.carrotmoa.service.UserService;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +49,7 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<Boolean> userJoinSubmit(@RequestBody UserJoinDto userJoinDto) {
+    public ResponseEntity<Boolean> userJoinSubmit(@RequestBody  @Valid UserJoinDto userJoinDto) {
         return new ResponseEntity<Boolean>(userService.userJoin(userJoinDto), HttpStatus.OK);
     }
 
@@ -58,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Boolean> userProfileUpdate(@RequestBody UserUpdateRequest userUpdateRequestDto) {
+    public ResponseEntity<Boolean> userProfileUpdate(@RequestBody @Valid UserUpdateRequest userUpdateRequestDto) {
         return new ResponseEntity<Boolean>(userService.userProfileUpdate(userUpdateRequestDto), HttpStatus.OK);
     }
     @PostMapping("/address-update")
