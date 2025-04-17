@@ -103,7 +103,7 @@ $duplicationCheck.click(function () {
       } else {
         $check.text('사용 가능한 이메일입니다.');
         $authentication.html(
-            "<input type='button' id='use-email' value='이 이메일 사용할래요'/>");
+            "<input type='button' id='use-email' value='이 이메일 사용할래요' style='margin-left: 55%; width: 45%;' class='default-button'/>");
       }
     }
   })
@@ -111,13 +111,13 @@ $duplicationCheck.click(function () {
 
 $authentication.on('click', '#use-email', function () {
   $authentication.html("<input type='text' id='auth-code'/> " +
-      "<input type='button' id='authentication-mail' value='인증코드 발송' style='height:40px;margin-left:20px;'/>");
+      "<input type='button' id='authentication-mail' value='인증코드 발송' style='height:40px;margin-left:20px;' class='default-button'/>");
   $authenticationMail = $('#authentication input#authentication-mail');
   $email.prop('readonly', true);
   $duplicationCheck.hide();
   $check.text('');
   $authentication.append(
-      "<input type='button' id='auth-code-certified' value='인증' style='height:40px;margin-left:20px;'/>");
+      "<input type='button' id='auth-code-certified' value='인증' style='height:40px;margin-left:20px;' class='default-button'/>");
   $authCodeCertified = $('#authentication input#auth-code-certified');
   $authCodeCertified.hide();
 });
