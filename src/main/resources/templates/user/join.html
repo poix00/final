@@ -14,11 +14,11 @@
   <form class="user-form" id="join-form" th:action="@{/api/user/join}" th:method="post" th:object="${userJoinDto}">
     <label for="email">이메일</label>
     <input id="email" th:field="*{email}" type="text">
-    <input disabled id="duplication-check" required type="button" value="중복 체크"><span id="check"></span> <br>
+    <input disabled id="duplication-check" class="default-button" required type="button" value="중복 체크"><span id="check"></span> <br>
     <div id="authentication">
     </div>
     <div id="timer">
-      <span id="minutes"></span>:<span id="seconds"></span>
+      <span id="minutes" class="default-text-color"></span> : <span id="seconds" class="default-text-color"></span>
     </div>
     <label for="password">비밀번호</label>
     <input id="password" maxlength="36" name="password" th:field="*{password}" type="password"> <span id="password-check"></span> <br>

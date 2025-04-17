@@ -42,11 +42,29 @@
   color: #FE6F0F;
   border: solid 1px rgb(255, 185, 139);
   border-radius: 10px;
+}
+.default-button{
+  /*margin: 10px 0;*/
+  /*padding: 10px;*/
+  color: #FE6F0F;
+  border: solid 1px rgb(255, 185, 139);
+  border-radius: 10px;
+  margin-left: 70%;
+  width: 30%;
+  cursor: pointer;
 
+}
+.default-button:focus{
+  background-color: #FE6F0F;
+  color: black;
+  cursor: pointer;
 }
 
 .user-form input:focus {
   border-color: #FE6F0F;
+}
+.default-text-color{
+  color:#FE6F0F;
 }
 
 .user-form input[type="submit"] {
@@ -80,7 +98,7 @@
 
 [name="login"] {
   width: 400px;
-  height: 320px;
+  height: 350px;
 }
 
 [name="login-logo"] {
