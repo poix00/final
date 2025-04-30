@@ -7,8 +7,8 @@ import lombok.Getter;
 
 @Getter
 public enum State {
-    NORMAL(1),
-    DELETE(2),
+    NORMAL(0),
+    DELETE(1),
 
     ;
     private static final Map<Integer, State> statusMap = new HashMap<>();
@@ -19,14 +19,14 @@ public enum State {
         }
     }
 
-    private final Integer status;
+    private final int status;
 
 
-    State(Integer status) {
+    State(int status) {
         this.status = status;
     }
 
-    public static String getStateName(Integer status) {
+    public static String getStateName(int status) {
         State state = statusMap.get(status);
         return state != null ? state.name() : null;
     }

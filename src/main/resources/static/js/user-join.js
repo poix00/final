@@ -129,7 +129,7 @@ $authentication.on('click', '#authentication-mail', function () {
   $.ajax({
     url: '/api/user/auth-code-send',
     data: {email: email},
-    type: 'get',
+    type: 'POST',
     success: function (data) {
       if (data) {
         $authenticationMail.val('재발송');
@@ -243,7 +243,7 @@ if (document.getElementById('join-form')) {
         formData.forEach((value, key) => {
           data[key] = value;
         })
-        fetch("/api/user/join", {
+        fetch("/api/user/", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'

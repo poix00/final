@@ -4,19 +4,21 @@ import carrotmoa.carrotmoa.entity.User;
 import carrotmoa.carrotmoa.entity.UserAddress;
 import carrotmoa.carrotmoa.entity.UserProfile;
 import carrotmoa.carrotmoa.enums.AuthorityCode;
+import carrotmoa.carrotmoa.exception.UserServiceException;
 import carrotmoa.carrotmoa.model.request.UserAddressUpdateRequest;
 import carrotmoa.carrotmoa.model.request.UserJoinDto;
 import carrotmoa.carrotmoa.model.request.UserUpdateRequest;
+import carrotmoa.carrotmoa.model.request.UserWithdrawalRequest;
 import carrotmoa.carrotmoa.model.response.FindUserResponse;
 import carrotmoa.carrotmoa.repository.AccountRepository;
 import carrotmoa.carrotmoa.repository.UserAddressRepository;
 import carrotmoa.carrotmoa.repository.UserProfileRepository;
 import carrotmoa.carrotmoa.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -154,6 +156,7 @@ public class UserService {
             return true;
         }
     }
+
     public FindUserResponse findUserNickname(String searchType, String searchKeyword) throws EntityNotFoundException{
         UserProfile profile = null;
         if (searchType.equals("userId")) {
@@ -166,6 +169,17 @@ public class UserService {
         }
         return new FindUserResponse(profile);
     }
-
-
+    @Transactional
+    public Boolean userWithdrawal(UserWithdrawalRequest request, HttpSession session) {
+            User user = userRepository.findByEmail(request.getEmail());
+            if(user == null) {
+                throw new UserServiceException("USER_NOT_FOUND","해당 이메일의 유저가 존재하지않습니다.");
+            } else if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new UserServiceException("INVALID_PASSWORD","비밀번호가 일치하지않습니다,");
+            }
+            user.userWithdrawalTrue();
+            userRepository.save(user);
+            session.removeAttribute("user");
+            return true;
+    }
 }

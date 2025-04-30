@@ -6,11 +6,6 @@
     <div class="my-page-main-content-header"><h4>정보 수정</h4></div>
     <div class="my-page-main-content">
 
-      <!--            <div class="my-page-main-content-item">-->
-      <!--                <span class="my-page-item-text">내 프로필</span>-->
-      <!--                <a th:href="@{/user/profile-update}" class="my-page-btn-edit">수정</a>-->
-
-      <!--            </div>-->
       <div class="my-page-main-content-item">
         <span class="my-page-item-text">내 프로필</span>
         <a class="my-page-btn-edit" th:href="@{/user/profile-update}">수정</a>
@@ -25,6 +20,11 @@
             <div class="my-page-main-content-item my-page-content-row">
                 <span class="my-page-item-text">사는 곳</span>
                 <a th:href="@{/user/my-page-location}" class="my-page-btn-edit">수정</a>
+            </div>
+
+            <div class="my-page-main-content-item my-page-content-row">
+                <span class="my-page-item-text" style="color: red">회원탈퇴</span>
+                <a th:href="@{/user/my-page-withdrawal}" class="my-page-btn-edit">탈퇴</a>
             </div>
         </div>
 

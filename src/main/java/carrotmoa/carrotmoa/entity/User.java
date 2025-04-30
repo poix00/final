@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 @Table(name = "user")
@@ -18,7 +19,6 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@DynamicUpdate
 public class User extends BaseEntity {
 
     @Column(name = "email")
@@ -35,6 +35,12 @@ public class User extends BaseEntity {
 
     @Column(name = "authority_id")
     private Long authorityId;
+
     @Column(name = "state")
     private int state;
+
+
+    public void userWithdrawalTrue(){
+        this.isWithdrawal = true;
+    }
 }
