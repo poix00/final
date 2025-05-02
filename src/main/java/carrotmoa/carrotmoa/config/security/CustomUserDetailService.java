@@ -6,6 +6,7 @@ import carrotmoa.carrotmoa.repository.UserProfileRepository;
 import carrotmoa.carrotmoa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,6 +26,8 @@ public class CustomUserDetailService implements UserDetailsService {
         User user = userRepository.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
+        } else if(user.getIsWithdrawal()){
+            throw new UsernameNotFoundException("User is withdrawal");
         }
 
         return new CustomUserDetails(user, userProfileRepository,userAddressRepository, defaultProfileImageUrl);

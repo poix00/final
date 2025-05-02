@@ -97,8 +97,8 @@ if(document.getElementById("confirmButton")){
 }
 
 function userAddressUpdate(addressData) {
-    fetch("/api/user/address-update", {
-        method: "POST",
+    fetch("/api/user/update-address", {
+        method: "PUT",
         headers: {
             'Content-Type': 'application/json'
         },

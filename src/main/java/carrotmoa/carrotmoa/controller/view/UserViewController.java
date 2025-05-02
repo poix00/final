@@ -45,6 +45,11 @@ public class UserViewController {
         model.addAttribute("fragment","my-page-location");
         return "/user/my-page";}
 
+    @GetMapping("/my-page-withdrawal")
+    public String userWithdrawal(Model model) {
+        model.addAttribute("fragment","my-page-withdrawal");
+        return "/user/my-page";}
+
     @GetMapping("/my-page-service1")
     public String myPageService1(Model model) {
         model.addAttribute("fragment", "service1");

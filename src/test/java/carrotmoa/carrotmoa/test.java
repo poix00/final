@@ -9,8 +9,6 @@ public class test {
     public static void main(String[] args) {
         System.out.println(State.NORMAL);
         System.out.println(State.NORMAL.name());
-        int a = 1;
-
         System.out.println(State.getStateName(1));
 
     }

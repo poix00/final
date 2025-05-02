@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div layout:fragment name="my-page-withdrawal">
+  <div name="login-form">
+    <a class="user-form-logo" href="/">
+      <img alt="logo" src="/images/main-logo.png">
+      <span name="login-logo">CARROTMOA</span>
+    </a>
+    <div class="user-form">
+      <label for="password">사용중인 비밀번호</label>
+      <input id="password" maxlength="36" type="password"><br>
+      <br>
+      <input id="email" th:value="${user.getUsername()}" type="hidden">
+      <input id="user-withdrawal-btn" type="button" value="탈퇴">
+    </div>
+  </div>
+
+</div>
+<script src="/js/user-my-page.js"></script>
+</html>

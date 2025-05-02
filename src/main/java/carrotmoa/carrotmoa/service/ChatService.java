@@ -24,8 +24,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ChatService {
-    private final String destination = "/chat/sub/";
-
+    private final String DESTINATION = "/chat/sub/";
     private final SimpMessagingTemplate template;
     private final ChatRoomRepository chatRoomRepository;
     private final ChatRoomUserRepository chatRoomUserRepository;
@@ -37,7 +36,7 @@ public class ChatService {
     public ChatMessageRequest sendMessage(ChatMessageRequest message) {
         ChatRoom chatRoom = chatRoomRepository.findById(message.getChatRoomId())
             .orElseThrow(() -> new EntityNotFoundException("해당 채팅방을 찾을 수 없습니다. : " + message.getChatRoomId()));
-        template.convertAndSend(destination + message.getChatRoomId(), message);
+        template.convertAndSend(DESTINATION + message.getChatRoomId(), message);
         ChatMessage chatMessageEntity = chatMessageRepository.save(message.toEntityChatMessage());
         return new ChatMessageRequest(chatMessageEntity);
     }

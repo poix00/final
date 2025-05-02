@@ -1,6 +1,7 @@
 package carrotmoa.carrotmoa.config.security;
 
 import carrotmoa.carrotmoa.enums.AuthorityCode;
+import jakarta.servlet.FilterChain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @RequiredArgsConstructor
@@ -19,6 +22,9 @@ public class SecurityConfig {
     public BCryptPasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {return new HttpSessionEventPublisher();}
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,7 +37,6 @@ public class SecurityConfig {
                 .requestMatchers("/community/write").authenticated()
                 .requestMatchers("/host/room/**").hasAuthority(AuthorityCode.HOST.name())
                 .anyRequest().permitAll()
-
             )
 
             .sessionManagement(session -> session
@@ -55,7 +60,6 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
             )
             .userDetailsService(detailService);
-        //                            //.requestMatchers("/**").hasAnyRole(AuthorityCode.SUPER_ADMIN.name())
         return http.build();
     }
 }

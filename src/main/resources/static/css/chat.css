@@ -32,16 +32,20 @@
 }
 
 .chat-modal-button {
+  padding: 0;
+  display: block;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 10px 20px;
-  background-color: rgb(255, 185, 139);
-  color: white;
+  background-color: whitesmoke;
+  margin: 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   z-index: 10;
+}
+.chat-img{
+  width: 30px;
 }
 
 .chat-modal-button:hover {
